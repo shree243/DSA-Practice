@@ -151,6 +151,23 @@ public class Practice {
         }
     }
 
+    public static int upperBound(int[] arr, int target, int length) {
+
+        int low = 0;
+        int high = length - 1;
+        int ans = length;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] > target) {
+                ans = mid;
+                high = mid - 1;
+            } else
+                low = mid + 1;
+
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         // countDigits(12345);
         // reverseNumber(12345);
@@ -159,11 +176,13 @@ public class Practice {
         // System.out.println(num);
         // Boolean num = armstrongnumber(123);
         // divisor(36);
-        int arr[] = { 2, 3, 5, 1, 9 };
+        int arr[] = { 3, 5, 8, 9, 15, 19 };
         // selectionSort(arr);
         // bubbleSort(arr);
         // insertionSort(arr);
-        subArray(arr);
+        // subArray(arr);
+        int ans = upperBound(arr, 9, 6);
+        System.out.println(ans);
     }
 
 }
