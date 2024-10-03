@@ -291,26 +291,42 @@ import java.util.HashSet;
 //     }
 // }
 
-public class riv1 {
-    public static void lowerBound(int[] arr, int target) {
-        int left = 0;
-        int right = arr.length - 1;
-        int ans = arr.length;
+// public class riv1 {
+//     public static void lowerBound(int[] arr, int target) {
+//         int left = 0;
+//         int right = arr.length - 1;
+//         int ans = arr.length;
 
-        while (left <= right) {
+//         while (left <= right) {
 
-            int mid = (left + right) / 2;
-            if (arr[mid] >= target) {
-                ans = mid;
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        }
+//             int mid = (left + right) / 2;
+//             if (arr[mid] >= target) {
+//                 ans = mid;
+//                 right = mid - 1;
+//             } else {
+//                 left = mid + 1;
+//             }
+//         }
+//     }
+
+//     public static void main(String[] args) {
+//         int arr[] = { 1, 2, 3, 3, 5, 8, 8, 10, 10, 11 };
+//         lowerBound(arr, 9);
+//     }
+// }
+
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data, Node next) {
+        this.data = data;
+        this.next = next;
     }
+}
 
+public class riv1 {
     public static void main(String[] args) {
-        int arr[] = { 1, 2, 3, 3, 5, 8, 8, 10, 10, 11 };
-        lowerBound(arr, 9);
+
     }
 }
