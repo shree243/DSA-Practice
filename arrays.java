@@ -1181,6 +1181,62 @@ class arrays {
         return count;
     }
 
+    public static int jump(int[] nums) {
+        int n = nums.length - 1;
+        int l = 0, r = 0, jumps = 0;
+        while (r < n) {
+            int farthest = r;
+            for (int i = l; i <= r; i++) {
+                farthest = Math.max(farthest, i + nums[i]);
+            }
+            l = r + 1;
+            r = farthest;
+            jumps++;
+        }
+        return jumps;
+    }
+
+    public static int[][] mergee(int[][] intervals) {
+
+        List<int[]> list = new ArrayList<>();
+
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+        int[] newIntervals = new int[2];
+        newIntervals[0] = intervals[0][0];
+        newIntervals[1] = intervals[0][1];
+        for (int i = 1; i < intervals.length; i++) {
+            if (intervals[i][0] <= newIntervals[newIntervals.length - 1]) {
+                newIntervals[newIntervals.length - 1] = Math.max(newIntervals[newIntervals.length - 1],
+                        intervals[i][1]);
+            } else {
+                list.add(newIntervals);
+                // newIntervals = new int[2];
+                newIntervals[0] = intervals[i][0];
+                newIntervals[1] = intervals[i][1];
+            }
+        }
+        list.add(newIntervals);
+        return list.toArray(new int[list.size()][]);
+    }
+
+    public static int lengthOfLongestSubstrings(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int len = 0;
+        int i = 0;
+        int j = 0;
+        while (j < s.length()) {
+            if (map.containsKey(s.charAt(j))) {
+                // i =Math.max(map.get(s.charAt(j))+1, i);
+                i = map.get(s.charAt(j) + 1);
+            }
+            map.put(s.charAt(j), j);
+            len = Math.max(j - i + 1, len);
+            j++;
+        }
+        return len;
+    }
+
     public static void main(String[] args) {
 
         // String s = "abba";
@@ -1198,9 +1254,16 @@ class arrays {
         // int g[] = { 4, 5, 6, 7, 0, 1, 2 };
         // int ans1 = search(g, 0);
         // System.out.println(ans1);
-        int g[] = { 1, 0, 1, 0, 1 };
-        int ans1 = numSubarraysWithSum(g, 2);
+        String s = "abcabcbb";
+        int ans1 = lengthOfLongestSubstrings(s);
         System.out.println(ans1);
+        // int g[][] = { { 1, 3 }, { 2, 6 }, { 8, 10 },
+        // { 15, 18 } };
+        // int ans1[][] = mergee(g);
+        // System.out.println(ans1);
+        // int g[] = { 2, 3, 1, 1, 4 };
+        // int ans1 = jump(g);
+        // System.out.println(ans1);
         // int an = lenOfLongSubarr(nums, 6, 16);
         // int nums[] = { -1, 0, 1, 2, -1, -4 };
         // List<List<Integer>> ans = triplet(6, nums);
